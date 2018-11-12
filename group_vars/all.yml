@@ -3,7 +3,8 @@ local_etcd_secrets_dir: "{{ inventory_dir }}/secrets/etcd"
 local_kubernetes_secrets_dir: "{{ inventory_dir }}/secrets/kubernetes"
 
 # Kubernetes
-kube_version: 1.9.6
+#kube_version: 1.9.6
+kube_version: 1.11.0
 
 # Should etcd certificates be generated if not found in local or in first etcd node
 etcd_generate_certs: true
@@ -28,15 +29,16 @@ kubeadm_opts: ''
 service_subnet: 10.96.0
 service_cidr: "{{ service_subnet }}.0/12"
 dns_name: cluster.local
+#dns_name: kubernetes-403845600.us-east-1.elb.amazonaws.com
 
 ## interface that should be used for flannel operations
 ## This is actually an inventory cluster-level item
-# flannel_interface:
+flannel_interface: eth0
 pod_network_cidr: 10.244.0.0/16
 
 # A list of insecure registrys you might need to define
-insecure_registrys: ""
-# insecure_registrys=['gcr.io']
+insecure_registrys: []
+#insecure_registrys: ['gcr.io']
 
 systemd_dir: /lib/systemd/system
 system_env_dir: /etc/sysconfig

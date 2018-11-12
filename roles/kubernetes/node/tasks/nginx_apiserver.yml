@@ -1,4 +1,6 @@
 ---
+
+# ToDo restart is hanging here, test thoroughly
 - name: nginx-proxy | Make nginx directory
   file:
     path: /etc/nginx
@@ -21,7 +23,7 @@
     dest: "/etc/kubernetes/manifests/nginx-proxy.yml"
 
 - name: Restart all nginx proxies to fetch updated configuration
-  command: kubectl delete pod -n kube-system -l k8s-app=kube-nginx-apiserver
+  command: kubectl delete pod -n kube-system -l k8s-app=kube-nginx-apiserver --force || true
   when: write_nginx_config is changed
   run_once: true
   delegate_to: "{{ groups['kube-controllers'][0] }}"
@@ -74,7 +76,7 @@
     KUBECONFIG: "/etc/kubernetes/admin.conf"
 
 - name: Restart kube-proxy pods
-  command: kubectl delete pod -n kube-system -l k8s-app=kube-proxy
+  command: kubectl delete pod -n kube-system -l k8s-app=kube-proxy --force || true
   when: update_kube_proxy_config is changed
   run_once: true
   delegate_to: "{{ groups['kube-controllers'][0] }}"

@@ -14,10 +14,10 @@ TimeoutStartSec=0
 
 ExecStart=/usr/local/bin/etcd --name ${PEER_NAME} \
     --data-dir /var/lib/etcd \
-    --listen-client-urls https://{{ ip }}:2379,https://127.0.0.1:2379 \
-    --advertise-client-urls https://{{ ip }}:2379 \
-    --listen-peer-urls https://{{ ip }}:2380 \
-    --initial-advertise-peer-urls https://{{ ip }}:2380 \
+    --listen-client-urls https://{{ ec2_private_ip_address }}:2379,https://127.0.0.1:2379 \
+    --advertise-client-urls https://{{ ec2_private_ip_address }}:2379 \
+    --listen-peer-urls https://{{ ec2_private_ip_address }}:2380 \
+    --initial-advertise-peer-urls https://{{ ec2_private_ip_address }}:2380 \
     --cert-file=/etc/etcd/pki/server.pem \
     --key-file=/etc/etcd/pki/server-key.pem \
     --client-cert-auth \

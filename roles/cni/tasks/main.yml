@@ -17,18 +17,18 @@
 
 - name: "Apply flannel RBAC config"
   command: kubectl apply -f /etc/kubernetes/network/flannel-rbac.yml
-  run_once: true
+  #run_once: true
   environment:
     KUBECONFIG: "/etc/kubernetes/admin.conf"
 
 - name: "Apply flannel DaemonSet config"
   command: kubectl apply -f /etc/kubernetes/network/flannel.yml
-  run_once: true
+  #run_once: true
   environment:
-    KUBECONFIG: "/etc/kubernetes/admin.conf"
+      KUBECONFIG: "/etc/kubernetes/admin.conf"
 
 - name: "Wait for flannel subnet.env file presence"
   wait_for:
     path: /run/flannel/subnet.env
     delay: 5
-    timeout: 600
+    timeout: 120

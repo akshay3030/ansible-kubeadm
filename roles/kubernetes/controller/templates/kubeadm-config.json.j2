@@ -1,12 +1,12 @@
-apiVersion: kubeadm.k8s.io/v1alpha1
+apiVersion: kubeadm.k8s.io/v1alpha2
 kind: MasterConfiguration
 api:
-  advertiseAddress: {{ ip }}
+  advertiseAddress: {{ ec2_private_ip_address }}
   bindPort: 6443
 etcd:
   endpoints:
 {% for host in groups['etcd'] %}
-  - https://{{ hostvars[host]['ip'] }}:2379
+  - https://{{ hostvars[host]['ec2_private_ip_address'] }}:2379
 {% endfor %}
   caFile: /etc/kubernetes/pki/etcd/ca.pem
   certFile: /etc/kubernetes/pki/etcd/client.pem

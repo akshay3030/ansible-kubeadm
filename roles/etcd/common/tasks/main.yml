@@ -25,8 +25,8 @@
 - name: Add entries to hosts files
   lineinfile:
     dest: /etc/hosts
-    regexp: "{{ hostvars[item].ip }} {{item}}"
-    line: "{{ hostvars[item].ip }} {{item}}"
+    regexp: "{{ hostvars[item].ec2_private_ip_address }} {{item}}"
+    line: "{{ hostvars[item].ec2_private_ip_address }} {{item}}"
     insertafter: EOF
     state: present
   with_items: "{{ groups['etcd'] }}"

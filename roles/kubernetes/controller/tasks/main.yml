@@ -4,7 +4,7 @@
   include_tasks: pki/fetch.yml
 
 - name: Reset Kubernetes component
-  shell: "kubeadm reset"
+  shell: "kubeadm reset -f"
   register: reset_cluster
 
 - name: Distribute PKI's CAs

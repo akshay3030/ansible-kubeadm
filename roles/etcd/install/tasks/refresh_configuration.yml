@@ -5,7 +5,7 @@
     etcd_peer_urls: >-
       {% for host in groups['etcd'] -%}
         {%- if hostvars[host]['etcd_member_in_cluster'].rc == 0 -%}
-          {{ host }}=https://{{ hostvars[host]['ip'] }}:2380{% if not loop.last %},{% endif %}
+          {{ host }}=https://{{ hostvars[host]['ec2_private_ip_address'] }}:2380{% if not loop.last %},{% endif %}
         {%- endif -%}
       {%- endfor -%}
     etcd_cluster_is_healthy:

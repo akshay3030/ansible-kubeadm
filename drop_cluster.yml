@@ -5,7 +5,7 @@
   become: yes
   tasks:
     - name: Reset Kubernetes component
-      shell: "kubeadm reset"
+      shell: "kubeadm reset -f"
       ignore_errors: True
 
     - name: Delete flannel.1 interface

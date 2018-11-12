@@ -1,12 +1,12 @@
 ---
 
 - name: Label nodes as nodes
-  command: kubectl label node {{ ansible_hostname }} node-role.kubernetes.io/node= --overwrite
+  command: kubectl label node {{ ec2_private_dns_name | regex_replace('.ec2.internal$','') }} node-role.kubernetes.io/node= --overwrite
   environment:
     KUBECONFIG: "/etc/kubernetes/kubelet.conf"
 
 - name: Label nodes with their custom labels
-  command: kubectl label node {{ ansible_hostname }} {{ item }} --overwrite
+  command: kubectl label node {{ ec2_private_dns_name | regex_replace('.ec2.internal$','') }} {{ item }} --overwrite
   environment:
     KUBECONFIG: "/etc/kubernetes/kubelet.conf"
   with_items: "{{ custom_labels }}"

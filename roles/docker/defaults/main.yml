@@ -1,3 +1,7 @@
 ---
 
-docker_version: 17.03
+docker_version: 18.06
+#docker_version: "18.03.0-ce"
+#docker_package_file: "docker-{{ docker_version }}.tgz"
+#docker_download_url: "https://get.docker.com/builds/Linux/x86_64/{{ docker_package_file }}"
+#docker_download_url: "https://download.docker.com/linux/static/stable/x86_64/{{ docker_package_file }}"

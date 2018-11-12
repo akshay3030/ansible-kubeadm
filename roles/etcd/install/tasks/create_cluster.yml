@@ -2,7 +2,7 @@
   set_fact:
     etcd_peer_urls: >-
       {% for host in groups['etcd'] -%}
-        {{ host }}=https://{{ hostvars[host]['ip'] }}:2380{%- if not loop.last -%},{%- endif -%}
+        {{ host }}=https://{{ hostvars[host]['ec2_private_ip_address'] }}:2380{%- if not loop.last -%},{%- endif -%}
       {%- endfor -%}
 
 - name: "Create/update etcd.env"
